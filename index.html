@@ -2,505 +2,693 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JB Madagascar - Official Corporate Website & Careers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JB Madagascar | Excellence & Innovation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* --- Palette de Couleurs Officielle JB Madagascar --- */
+        /* =========================================
+           VARIABLES DYNAMIQUES (MODE SOMBRE PAR DÉFAUT)
+           ========================================= */
         :root {
-            --jb-red: #e30613;        
-            --jb-dark-red: #b0040e;   
-            --jb-yellow: #ffed00;     
-            --white: #ffffff;
-            --light-bg: #fbeeed;     
-            --dark-text: #1a1a1a;
-            --grey-border: #dddddd;
-            --success-green: #27ae60;
+            --bg-dark: #050507;
+            --bg-surface: #0a0a0f;
+            --primary-red: #e30613;
+            --primary-glow: rgba(227, 6, 19, 0.4);
+            --accent-gold: #ffdf00;
+            --text-light: #f8fafc;
+            --text-dim: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.15);
+            --input-bg: rgba(0, 0, 0, 0.5);
+            --nav-bg: rgba(5, 5, 7, 0.85);
+            --footer-bg: #020203;
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        *, *::before, *::after {
-            box-sizing: border-box;
+        /* =========================================
+           VARIABLES MODE CLAIR (LIGHT MODE)
+           ========================================= */
+        body.light-mode {
+            --bg-dark: #f8fafc;
+            --bg-surface: #ffffff;
+            --primary-glow: rgba(227, 6, 19, 0.2);
+            --text-light: #0f172a;
+            --text-dim: #475569;
+            --glass-bg: rgba(0, 0, 0, 0.03);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --glass-highlight: rgba(0, 0, 0, 0.05);
+            --input-bg: rgba(255, 255, 255, 0.8);
+            --nav-bg: rgba(248, 250, 252, 0.85);
+            --footer-bg: #e2e8f0;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
 
         body {
-            font-family: 'Arial Black', 'Segoe UI', Impact, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light-bg);
-            color: var(--dark-text);
-            font-size: 11pt;
-            overflow-x: hidden; /* Empêche le site de bouger de gauche à droite sur téléphone */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(227, 6, 19, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(255, 223, 0, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
         }
 
-        /* --- BANDEAU DE RECRUTEMENT RESPONSIVE --- */
-        .recruitment-banner {
-            background-color: var(--jb-yellow);
-            color: var(--jb-red);
-            text-align: center;
-            padding: 12px 15px;
-            font-weight: 900;
-            font-size: 1.1rem;
-            border-bottom: 4px solid var(--jb-red);
+        /* --- TYPOGRAPHIE --- */
+        h1, h2, h3 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* --- ANIMATIONS GLOBALES --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition-smooth);
+            transition-duration: 0.8s;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================
+           NAVIGATION & BOUTONS
+           ========================================= */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 1.2rem 5%;
             display: flex;
-            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            transition: var(--transition-smooth);
+        }
+
+        .logo-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            transition: var(--transition-smooth);
+        }
+
+        .logo-text span { color: var(--primary-red); }
+
+        .nav-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-action {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-light);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-action:hover {
+            border-color: var(--primary-red);
+            transform: translateY(-2px);
+        }
+
+        .btn-theme {
+            font-size: 1.1rem;
+            padding: 0.4rem 0.8rem;
+        }
+
+        /* =========================================
+           HERO SECTION (HDR EFFECT)
+           ========================================= */
+        header.hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 15px;
-            flex-wrap: wrap; /* Aligne le bouton en dessous automatiquement si l'écran est trop petit */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .btn-banner {
-            background-color: var(--jb-red);
-            color: var(--white);
-            border: 2px solid var(--white);
-            padding: 6px 18px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            transition: all 0.2s ease-in-out;
-            white-space: nowrap;
-        }
-
-        .btn-banner:hover {
-            background-color: var(--dark-text);
-            color: var(--jb-yellow);
-            border-color: var(--jb-yellow);
-            transform: scale(1.05);
-        }
-
-        /* --- EN-TÊTE ADAPTATIF --- */
-        header {
-            background-color: var(--jb-red);
-            border-bottom: 8px solid var(--jb-yellow);
-            color: var(--white);
-            padding: 3rem 1rem;
             text-align: center;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            position: relative;
+            padding: 6rem 1.5rem 2rem 1.5rem;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 3.5rem; /* Ajusté pour PC */
-            font-family: Impact, 'Arial Black', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 3px 3px 0px var(--dark-text), -1px -1px 0px var(--dark-text), 1px -1px 0px var(--dark-text), -1px 1px 0px var(--dark-text);
-            word-wrap: break-word;
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; width: 100%; height: 150px;
+            background: linear-gradient(to top, var(--bg-dark), transparent);
+            pointer-events: none;
+            transition: background 0.5s ease;
         }
 
-        .subtitle {
-            font-family: 'Segoe UI', sans-serif;
+        .hero-badge {
+            background: rgba(227, 6, 19, 0.1);
+            border: 1px solid rgba(227, 6, 19, 0.3);
+            color: var(--primary-red);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: clamp(0.7rem, 2vw, 0.85rem);
             font-weight: 600;
-            text-transform: uppercase;
             letter-spacing: 1px;
-            background-color: var(--dark-text);
-            color: var(--jb-yellow);
-            display: inline-block;
-            padding: 6px 15px;
-            margin-top: 1rem;
-            border-radius: 4px;
-            font-size: 1rem;
-            max-width: 90%;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px var(--primary-glow);
+            animation: pulse 3s infinite alternate;
         }
 
-        .lang-switch {
+        @keyframes pulse {
+            0% { box-shadow: 0 0 10px var(--primary-glow); }
+            100% { box-shadow: 0 0 30px rgba(227, 6, 19, 0.3); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            line-height: 1.1;
+            transition: var(--transition-smooth);
+        }
+
+        .hero p.subtitle {
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            color: var(--text-dim);
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            font-weight: 400;
+            padding: 0 10px;
+        }
+
+        /* =========================================
+           GLASSMORPHISM CARDS (CONTENT)
+           ========================================= */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: clamp(1.5rem, 5vw, 3rem);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, var(--glass-highlight), transparent);
+            transform: skewX(-20deg);
+            transition: 0.7s;
+            z-index: -1;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(227, 6, 19, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 30px rgba(227, 6, 19, 0.05);
+        }
+
+        .glass-card:hover::before { left: 200%; }
+
+        .card-icon {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            margin-bottom: 1.2rem;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-red), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card h2 {
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .glass-card p {
+            color: var(--text-dim);
+            font-size: clamp(0.95rem, 3vw, 1.05rem);
+            flex-grow: 1;
+        }
+
+        .highlight-text {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+        
+        body.light-mode .highlight-text {
+            color: #d97706; /* Un doré plus lisible sur fond blanc */
+        }
+
+        /* --- PRODUITS SPÉCIFIQUES --- */
+        .product-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
             margin-top: 1.5rem;
         }
 
-        .btn-lang {
-            background-color: var(--white);
-            color: var(--jb-red);
-            border: 3px solid var(--dark-text);
-            padding: 0.6rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 900;
-            cursor: pointer;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
+        .tag {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            color: var(--text-light);
+            transition: var(--transition-smooth);
         }
 
-        /* --- CONTENEUR ET CADRES PRINCIPAUX --- */
-        .container {
-            width: 100%;
-            max-width: 900px; /* Largeur maximale parfaite sur PC */
-            margin: 2rem auto;
-            padding: 0 20px; /* Marges de sécurité sur les côtés */
+        .tag:hover {
+            background: var(--primary-red);
+            border-color: var(--primary-red);
+            color: #fff;
+            box-shadow: 0 4px 15px var(--primary-glow);
         }
 
-        .section-card {
-            background: var(--white);
-            padding: 2rem;
-            margin-bottom: 2.5rem;
-            border: 4px solid var(--dark-text);
-            box-shadow: 8px 8px 0px var(--jb-red);
+        /* =========================================
+           FORMULAIRE PREMIUM RECRUTEMENT
+           ========================================= */
+        .recruitment-section {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-surface) 100%);
+            border-top: 1px solid var(--glass-border);
+            padding: clamp(3rem, 8vw, 6rem) 1.5rem;
+            transition: background 0.5s ease;
         }
 
-        h2 {
-            color: var(--jb-red);
-            font-family: Impact, 'Arial Black', sans-serif;
-            text-transform: uppercase;
-            font-size: 1.8rem;
-            margin-top: 0;
-            border-bottom: 4px solid var(--jb-yellow);
-            padding-bottom: 0.5rem;
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: clamp(1.5rem, 6vw, 3rem);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            position: relative;
         }
 
-        p, li {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            font-size: 1.05rem;
-            font-weight: 500;
-            line-height: 1.6;
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px; right: -1px; bottom: -1px;
+            background: linear-gradient(45deg, var(--primary-red), transparent, var(--accent-gold));
+            z-index: -1;
+            border-radius: 25px;
+            opacity: 0.4;
         }
 
-        .highlight {
-            font-weight: 900;
-            color: var(--jb-red);
-            background-color: rgba(227, 6, 19, 0.08);
-            padding: 2px 6px;
-            border-radius: 3px;
-        }
+        .form-header { text-align: center; margin-bottom: clamp(2rem, 5vw, 3rem); }
+        
+        .form-header h2 { font-size: clamp(1.8rem, 5vw, 2.5rem); color: var(--text-light); }
 
-        ul {
-            padding-left: 1.2rem;
-        }
-
-        li {
-            margin-bottom: 0.8rem;
-        }
-
-        /* --- FORMULAIRE DE RECRUTEMENT INTERACTIF --- */
-        #applicationFormSection {
-            border: 4px solid var(--jb-red);
-            box-shadow: 8px 8px 0px var(--dark-text);
-            background-color: var(--white);
-        }
-
-        #applicationFormSection h2 {
-            color: var(--white);
-            background-color: var(--jb-red);
-            padding: 10px 15px;
-            border: 3px solid var(--dark-text);
-            margin: -2rem -2rem 2rem -2rem; /* Permet au titre de s'étendre sur tout le haut du cadre */
-        }
-
-        .form-group {
-            margin-bottom: 1.3rem;
-        }
+        .form-group { margin-bottom: 1.5rem; }
 
         label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: 800;
-            color: var(--dark-text);
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            font-weight: 700;
+            color: var(--text-dim);
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            font-size: 0.9rem;
         }
 
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        input[type="url"],
-        select,
-        textarea {
+        input, select, textarea {
             width: 100%;
-            padding: 12px;
-            border: 3px solid var(--dark-text);
-            font-family: 'Segoe UI', Arial, sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            background-color: #fafafa;
+            background: var(--input-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-light);
+            padding: clamp(12px, 3vw, 16px);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            transition: var(--transition-smooth);
+            -webkit-appearance: none;
         }
 
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="tel"]:focus,
-        input[type="url"]:focus,
-        select:focus,
-        textarea:focus {
+        input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: var(--jb-red);
-            background-color: var(--white);
+            border-color: var(--primary-red);
+            box-shadow: 0 0 15px rgba(227, 6, 19, 0.2);
+        }
+
+        /* Flèche personnalisée Select (Blanc pour sombre) */
+        select {
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem top 50%;
+            background-size: 0.65rem auto;
+            padding-right: 2.5rem;
+        }
+        
+        /* Flèche personnalisée Select (Noir pour mode clair) */
+        body.light-mode select {
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%230f172a%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+        }
+
+        select option {
+            background-color: var(--bg-surface);
+            color: var(--text-light);
         }
 
         .btn-submit {
-            background-color: var(--jb-red);
-            color: var(--white);
-            border: 3px solid var(--dark-text);
-            padding: 15px 20px;
-            font-size: 1.25rem;
-            font-family: Impact, sans-serif;
-            letter-spacing: 1px;
-            cursor: pointer;
             width: 100%;
-            transition: all 0.2s;
+            background: linear-gradient(135deg, #e30613 0%, #ff4b2b 100%);
+            color: #fff;
+            border: none;
+            padding: clamp(14px, 4vw, 18px);
+            font-size: clamp(0.95rem, 3vw, 1.1rem);
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(227, 6, 19, 0.3);
+            transition: var(--transition-smooth);
+            margin-top: 1rem;
             text-transform: uppercase;
-            box-shadow: 4px 4px 0px var(--dark-text);
+            letter-spacing: 1px;
         }
 
         .btn-submit:hover {
-            background-color: var(--jb-yellow);
-            color: var(--dark-text);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(227, 6, 19, 0.5);
         }
 
         #successMessage {
             display: none;
-            background-color: #d4edda;
-            color: #155724;
-            padding: 20px;
-            border: 3px solid var(--success-green);
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #34d399;
+            padding: 15px;
+            border-radius: 12px;
             text-align: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 15px;
+            font-weight: 600;
+            margin-top: 20px;
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
         }
 
+        /* =========================================
+           FOOTER PROFESSIONNEL
+           ========================================= */
         footer {
+            background-color: var(--footer-bg);
+            padding: clamp(3rem, 6vw, 4rem) 1.5rem;
             text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--dark-text);
-            color: var(--white);
-            border-top: 6px solid var(--jb-red);
-            margin-top: 4rem;
-            font-family: 'Segoe UI', sans-serif;
+            border-top: 1px solid var(--glass-border);
+            transition: background 0.5s ease;
         }
 
+        .footer-logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            font-weight: 800;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span { color: var(--primary-red); }
+
+        .creator-credit {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 8px 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+            color: var(--text-dim);
+        }
+
+        .creator-credit strong {
+            color: var(--text-light);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        body.light-mode .creator-credit strong {
+            color: var(--primary-red);
+        }
+
+        /* --- SYSTÈME BILINGUE --- */
         .lang-fr { display: none; }
         body.fr .lang-en { display: none; }
         body.fr .lang-fr { display: block; }
+        body.fr .lang-fr-inline { display: inline; }
+        body.fr .lang-en-inline { display: none; }
+        .lang-en-inline { display: inline; }
 
-        /* ==========================================================================
-           📱 MEDIA QUERIES : AJUSTEMENTS POUR TABLETTES ET TÉLÉPHONES
-           ========================================================================== */
-        
-        /* 1. Écrans Moyens (Tablettes : moins de 768px) */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.8rem; /* Titre un peu plus petit */
-            }
-            .container {
-                margin: 1rem auto;
-                padding: 0 15px; /* On resserre légèrement les bords */
-            }
-            .section-card {
-                padding: 1.5rem; /* Moins de vide autour du texte interne */
-            }
-            #applicationFormSection h2 {
-                margin: -1.5rem -1.5rem 1.5rem -1.5rem;
-            }
+        /* =========================================
+           MEDIA QUERIES 
+           ========================================= */
+        @media (max-width: 992px) {
+            .grid-2 { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* 2. Petits Écrans (Smartphones : moins de 480px) */
-        @media (max-width: 480px) {
-            .recruitment-banner {
-                flex-direction: column; /* Le bouton passe en dessous pour ne pas écraser le texte */
-                gap: 8px;
-                font-size: 0.95rem;
-            }
-            header h1 {
-                font-size: 2.2rem; /* Titre parfaitement dimensionné pour mobile */
-            }
-            header {
-                padding: 2rem 1rem;
-            }
-            .section-card {
-                padding: 1.2rem;
-                border: 3px solid var(--dark-text); /* Bordures un poil plus fines */
-                box-shadow: 5px 5px 0px var(--jb-red); /* Ombre ajustée */
-            }
-            #applicationFormSection {
-                box-shadow: 5px 5px 0px var(--dark-text);
-            }
-            #applicationFormSection h2 {
-                margin: -1.2rem -1.2rem 1.2rem -1.2rem;
-                font-size: 1.4rem;
-            }
-            h2 {
-                font-size: 1.4rem;
-            }
-            p, li {
-                font-size: 1rem; /* Texte très lisible sur smartphone */
-            }
-            .btn-submit {
-                font-size: 1.1rem;
-                padding: 12px 15px;
-            }
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; gap: 1.2rem; }
+            .hero-badge { margin-top: 2rem; }
+        }
+
+        @media (max-width: 380px) {
+            .form-container, .glass-card { padding: 1.2rem; }
+            input, select, textarea { padding: 10px; }
+            .btn-submit { padding: 12px; }
+            .btn-action { padding: 0.4rem 0.6rem; font-size: 0.7rem; }
         }
     </style>
 </head>
 <body class="fr">
 
-    <div class="recruitment-banner">
-        <span class="lang-en">⚠️ OFFICIAL WARNING: JB MADAGASCAR IS HIRING! JOIN OUR FACTORY TEAM</span>
-        <span class="lang-fr">⚠️ ALERTE OFFICIELLE : JB MADAGASCAR RECRUTE ! REJOIGNEZ NOTRE USINE</span>
-        <button class="btn-banner" onclick="scrollToForm()">
-            <span class="lang-en">Apply Online</span>
-            <span class="lang-fr">Postuler Ici</span>
-        </button>
-    </div>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo-text">JB<span>.</span></div>
+        <div class="nav-controls">
+            <!-- BOUTON CLAIR / SOMBRE -->
+            <button class="btn-action btn-theme" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle Dark/Light Mode">☀️</button>
+            <!-- BOUTON TRADUCTION -->
+            <button class="btn-action" onclick="toggleLanguage()" id="langBtn">EN / FR</button>
+        </div>
+    </nav>
 
-    <header>
-        <div class="lang-en">
-            <h1>JB MADAGASCAR</h1>
-            <p class="subtitle">Official Corporate Hub & Active Recruitment</p>
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="hero-badge reveal">
+            <span class="lang-en">Official Corporate Portal</span>
+            <span class="lang-fr">Portail Institutionnel Officiel</span>
         </div>
-        <div class="lang-fr">
-            <h1>JB MADAGASCAR</h1>
-            <p class="subtitle">Espace Institutionnel Officiel & Recrutement Actif</p>
-        </div>
-
-        <div class="lang-switch">
-            <button class="btn-lang" onclick="toggleLanguage()" id="langBtn">Switch to English</button>
-        </div>
+        <h1 class="reveal" style="transition-delay: 0.1s;">JB MADAGASCAR</h1>
+        <p class="subtitle reveal" style="transition-delay: 0.2s;">
+            <span class="lang-en">Pioneering the agrifood industry since 1963. A subsidiary of the BASAN Group delivering excellence to every household.</span>
+            <span class="lang-fr">Pionnier de l'industrie agroalimentaire depuis 1963. Une filiale du Groupe BASAN offrant l'excellence à chaque foyer.</span>
+        </p>
     </header>
 
-    <div class="container">
-
-        <div class="section-card">
-            <div class="lang-en">
-                <h2>🏢 COMPANY PROFILE</h2>
-                <p>We are <span class="highlight">JB Madagascar</span>, the most iconic and powerful subsidiary of the <span class="highlight">BASAN Group</span>. Since our historic foundation in 1963, we have ruled the agrifood market on the island. We manufacture and distribute high-volume, extremely popular consumer goods that are present in every single Malagasy home.</p>
+    <!-- MAIN CONTENT -->
+    <main class="container">
+        <div class="grid-2">
+            <div class="glass-card reveal">
+                <div class="card-icon">🏛️</div>
+                <h2>
+                    <span class="lang-en">Heritage & Vision</span>
+                    <span class="lang-fr">Héritage & Vision</span>
+                </h2>
+                <p>
+                    <span class="lang-en">Founded in 1963, JB Madagascar stands as the historic leader in the nation's agrifood sector. We blend decades of traditional expertise with cutting-edge industrial processes to maintain our position as a pillar of the Malagasy economy.</span>
+                    <span class="lang-fr">Fondée en 1963, JB Madagascar s'impose comme le leader historique du secteur agroalimentaire national. Nous allions des décennies d'expertise traditionnelle aux processus industriels de pointe pour maintenir notre position de pilier de l'économie malgache.</span>
+                </p>
             </div>
-            <div class="lang-fr">
-                <h2>🏢 PROFIL DE L'ENTREPRISE</h2>
-                <p>Nous sommes la société <span class="highlight">JB Madagascar</span>, la filiale la plus emblématique et puissante du <span class="highlight">groupe BASAN</span>. Depuis notre fondation historique en 1963, nous dominons le marché de l'agroalimentaire sur l'île. Nous fabriquons et distribuons des produits de grande consommation à fort volume et extrêmement populaires, présents dans chaque foyer malgache.</p>
+
+            <div class="glass-card reveal" style="transition-delay: 0.2s;">
+                <div class="card-icon">🏭</div>
+                <h2>
+                    <span class="lang-en">Signature Products</span>
+                    <span class="lang-fr">Produits Signatures</span>
+                </h2>
+                <p>
+                    <span class="lang-en">Our production lines are responsible for the most iconic consumer goods on the island, focusing on exceptional quality and taste.</span>
+                    <span class="lang-fr">Nos lignes de production sont à l'origine des biens de consommation les plus emblématiques de l'île, avec une exigence absolue sur la qualité et le goût.</span>
+                </p>
+                <div class="product-tags">
+                    <span class="tag">Biscuits Bolo</span>
+                    <span class="tag">Gouty</span>
+                    <span class="tag">Biscuits 4x4</span>
+                    <span class="tag">Tuti Sucette</span>
+                    <span class="tag">Pecto</span>
+                </div>
             </div>
         </div>
 
-        <div class="section-card">
-            <div class="lang-en">
-                <h2>🍪 OUR PRODUCTS & FAMOUS BRANDS</h2>
-                <p>Our global reputation is built on delicious, affordable, and legendary snacks:</p>
-                <ul>
-                    <li><span class="highlight">Biscuits & Cookies:</span> The legendary 4x4 biscuits, Gouty, and Pecto.</li>
-                    <li><span class="highlight">Confectionery:</span> Unbeatable candies, chewing gums, and premium chocolates (including the famous Mini Choco range and Tuti Sucette).</li>
-                    <li><span class="highlight">Strategic Diversification:</span> We have recently expanded our production lines to modern hygiene, cosmetic, and home maintenance products.</li>
-                </ul>
+        <div class="grid-2">
+            <div class="glass-card reveal">
+                <div class="card-icon">⚡</div>
+                <h2>
+                    <span class="lang-en">Eco-Industrial Hub</span>
+                    <span class="lang-fr">Complexe Éco-Industriel</span>
+                </h2>
+                <p>
+                    <span class="lang-en">Our primary manufacturing plant located in <span class="highlight-text">Amboditsiry</span> represents the future of sustainable production in Madagascar. By integrating high-capacity solar energy installations, we significantly reduce our carbon footprint while maximizing output efficiency.</span>
+                    <span class="lang-fr">Notre usine principale située à <span class="highlight-text">Amboditsiry</span> représente l'avenir de la production durable à Madagascar. En intégrant des installations d'énergie solaire à haute capacité, nous réduisons considérablement notre empreinte carbone.</span>
+                </p>
             </div>
-            <div class="lang-fr">
-                <h2>🍪 NOS PRODUITS & MARQUES CÉLÈBRES</h2>
-                <p>Notre réputation mondiale repose sur des produits délicieux, accessibles et légendaires :</p>
-                <ul>
-                    <li><span class="highlight">Biscuits & Goûters :</span> Les légendaires biscuits 4x4, Gouty, et Pecto.</li>
-                    <li><span class="highlight">Confiseries :</span> Des bonbons imbattables, chewing-gums et chocolats de premier choix (notamment la célèbre gamme Mini Choco et Tuti Sucette).</li>
-                    <li><span class="highlight">Diversification Stratégique :</span> Nous avons récemment étendu nos lignes de production aux produits modernes d'hygiène, de cosmétique et d'entretien.</li>
-                </ul>
+
+            <div class="glass-card reveal" style="transition-delay: 0.2s;">
+                <div class="card-icon">🌐</div>
+                <h2>
+                    <span class="lang-en">Global Connectivity</span>
+                    <span class="lang-fr">Connectivité Globale</span>
+                </h2>
+                <p>
+                    <span class="lang-en">Headquartered at 24 Radama I Street, Tsaralalàna, Antananarivo, our administrative center orchestrates a vast national supply chain network.</span>
+                    <span class="lang-fr">Basé au 24 rue Radama Ier, Tsaralalàna, Antananarivo, notre centre administratif orchestre un vaste réseau logistique et de distribution national.</span>
+                </p>
+                <p style="margin-top: 1rem;">
+                    <strong>Email:</strong> jb@basan.mg<br>
+                    <strong>Phone:</strong> +261 32 32 031 03
+                </p>
             </div>
         </div>
+    </main>
 
-        <div class="section-card">
-            <div class="lang-en">
-                <h2>📍 ECO-FACTORY & HEADQUARTERS</h2>
-                <p>We run a massive country-wide distribution network. As a forward-thinking industry leader, our main production complex located in <strong>Amboditsiry</strong> uses eco-friendly solar energy infrastructure to power its industrial machinery.</p>
-                <ul>
-                    <li><strong>Corporate HQ:</strong> 24 Radama I Street, Tsaralalàna, Antananarivo.</li>
-                    <li><strong>Direct Line:</strong> +261 32 32 031 03 | jb@basan.mg</li>
-                </ul>
-            </div>
-            <div class="lang-fr">
-                <h2>📍 USINE ÉCO-RESPONSABLE & SIÈGE SOCIAL</h2>
-                <p>Nous gérons un réseau de distribution massif à l'échelle nationale. En tant que leader industriel visionnaire, notre complexe de production principal situé à <strong>Amboditsiry</strong> utilise une infrastructure d'énergie solaire écologique pour alimenter ses machines industrielles.</p>
-                <ul>
-                    <li><strong>Siège Social :</strong> 24 rue Radama Ier, Tsaralalàna, Antananarivo.</li>
-                    <li><strong>Ligne Directe :</strong> +261 32 32 031 03 | jb@basan.mg</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="section-card" id="applicationFormSection">
-            <div class="lang-en">
-                <h2>💼 CAREER PORTAL: SUBMIT YOUR CV</h2>
-                <p>Do you want to work for the best agrifood brand? Fill out the official corporate application form below to submit your resume directly to our Human Resources department.</p>
-            </div>
-            <div class="lang-fr">
-                <h2>💼 PORTAIL CARRIÈRE : DÉPOSEZ VOTRE CV</h2>
-                <p>Vous souhaitez travailler pour la meilleure marque agroalimentaire ? Remplissez le formulaire de candidature officiel ci-dessous pour soumettre votre CV directement à notre département des Ressources Humaines.</p>
+    <!-- SECTION RECRUTEMENT / FIREBASE -->
+    <section class="recruitment-section" id="careers">
+        <div class="form-container reveal">
+            <div class="form-header">
+                <h2>
+                    <span class="lang-en">Join The Excellence</span>
+                    <span class="lang-fr">Rejoignez l'Excellence</span>
+                </h2>
+                <p style="color: var(--text-dim); margin-top: 10px;">
+                    <span class="lang-en">Submit your application to our HR database.</span>
+                    <span class="lang-fr">Soumettez votre candidature à notre base de données RH.</span>
+                </p>
             </div>
 
             <form id="jobForm">
                 <div class="form-group">
                     <label for="fullName">
-                        <span class="lang-en">Full Name :</span>
-                        <span class="lang-fr">Nom Complet :</span>
+                        <span class="lang-en">Full Name</span>
+                        <span class="lang-fr">Nom Complet</span>
                     </label>
-                    <input type="text" id="fullName" required placeholder="e.g. Allan Maurice">
+                    <input type="text" id="fullName" required placeholder="Ex: Allan Maurice">
                 </div>
 
                 <div class="form-group">
                     <label for="email">
-                        <span class="lang-en">Official Email Address :</span>
-                        <span class="lang-fr">Adresse Email Officielle :</span>
+                        <span class="lang-en">Professional Email</span>
+                        <span class="lang-fr">Email Professionnel</span>
                     </label>
-                    <input type="email" id="email" required placeholder="name@domain.com">
+                    <input type="email" id="email" required placeholder="contact@domaine.com">
                 </div>
 
                 <div class="form-group">
                     <label for="phone">
-                        <span class="lang-en">Active Phone Number :</span>
-                        <span class="lang-fr">Numéro de Téléphone Actif :</span>
+                        <span class="lang-en">Phone Number</span>
+                        <span class="lang-fr">Numéro de Téléphone</span>
                     </label>
                     <input type="tel" id="phone" required placeholder="+261 32 XX XXX XX">
                 </div>
 
                 <div class="form-group">
                     <label for="jobTitle">
-                        <span class="lang-en">Target Department :</span>
-                        <span class="lang-fr">Département Visé :</span>
+                        <span class="lang-en">Target Division</span>
+                        <span class="lang-fr">Division Souhaitée</span>
                     </label>
                     <select id="jobTitle" required>
-                        <option value="" disabled selected>-- Choose your department --</option>
-                        <option value="production">Amboditsiry Factory Production Operator</option>
-                        <option value="marketing">Brand Management & Sales Representative</option>
-                        <option value="logistics">National Fleet & Supply Chain Logistics</option>
-                        <option value="internship">Professional Student Internship (Stage)</option>
+                        <option value="" disabled selected>-- Sélectionnez / Select --</option>
+                        <option value="production">Usine & Production (Amboditsiry)</option>
+                        <option value="marketing">Marketing & Stratégie Commerciale</option>
+                        <option value="logistics">Logistique Nationale</option>
+                        <option value="internship">Stage / Internship</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="cvUrl">
-                        <span class="lang-en">Link to your Digital CV / Resume (Google Drive, Dropbox, PDF...) :</span>
-                        <span class="lang-fr">Lien vers votre CV Numérique (Google Drive, Dropbox, PDF...) :</span>
+                        <span class="lang-en">Cloud CV Link (Drive, PDF)</span>
+                        <span class="lang-fr">Lien Cloud vers le CV (Drive, PDF)</span>
                     </label>
-                    <input type="url" id="cvUrl" required placeholder="https://drive.google.com/.../mon-cv.pdf">
+                    <input type="url" id="cvUrl" required placeholder="https://...">
                 </div>
 
                 <div class="form-group">
                     <label for="message">
-                        <span class="lang-en">Corporate Motivation Statement :</span>
-                        <span class="lang-fr">Lettre de Motivation Express :</span>
+                        <span class="lang-en">Executive Summary</span>
+                        <span class="lang-fr">Résumé Exécutif (Motivation)</span>
                     </label>
-                    <textarea id="message" rows="5" placeholder="..." required></textarea>
+                    <textarea id="message" rows="4" placeholder="..." required></textarea>
                 </div>
 
                 <button type="submit" class="btn-submit">
-                    <span class="lang-en">Send Application Files</span>
-                    <span class="lang-fr">Transmettre le Dossier</span>
+                    <span class="lang-en">Securely Submit Application</span>
+                    <span class="lang-fr">Soumettre la Candidature Sécurisée</span>
                 </button>
             </form>
 
             <div id="successMessage">
-                <span class="lang-en">✅ TRANSMISSION SUCCESSFUL! Your professional file and CV have been securely uploaded to the JB Madagascar recruitment database. Our HR team will review your data.</span>
-                <span class="lang-fr">✅ TRANSMISSION RÉUSSIE ! Votre dossier professionnel et votre CV ont été enregistrés avec succès dans la base de données de recrutement de JB Madagascar. Notre équipe RH va analyser vos données.</span>
+                <span class="lang-en">✅ Transmission successful. Data securely encrypted and stored.</span>
+                <span class="lang-fr">✅ Transmission réussie. Données chiffrées et enregistrées avec succès.</span>
             </div>
         </div>
+    </section>
 
-    </div>
-
+    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 <span class="footer-accent">JB MADAGASCAR</span> - Filiale du Groupe BASAN. All corporate rights reserved.</p>
+        <div class="footer-logo">JB<span>.</span> MADAGASCAR</div>
+        <p style="color: var(--text-dim); font-size: clamp(0.8rem, 2vw, 0.9rem);">
+            &copy; 2026 Filiale du Groupe BASAN. 
+            <span class="lang-en-inline">All rights reserved.</span>
+            <span class="lang-fr-inline">Tous droits réservés.</span>
+        </p>
+        
+        <div class="creator-credit">
+            <span class="lang-en">Engineered & Developed by</span>
+            <span class="lang-fr">Architecture et Développement par</span> 
+            <strong>R. Maurice Allan</strong>
+        </div>
     </footer>
 
+    <!-- LOGIQUE JAVASCRIPT ET FIREBASE -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
 
-        // Configuration d'authentification à ta base Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyDkwEvGmQtS4qZbwlRJZawmRKBoScQAaxc",
             authDomain: "expoanglais-3bff4.firebaseapp.com",
@@ -515,9 +703,11 @@
 
         document.getElementById('jobForm').addEventListener('submit', async (e) => {
             e.preventDefault();
+            const submitBtn = e.target.querySelector('.btn-submit');
+            submitBtn.style.opacity = '0.5';
+            submitBtn.style.pointerEvents = 'none';
 
             try {
-                // Envoi des données du formulaire directement à Firestore
                 await addDoc(collection(db, "cv_demonstrations"), {
                     nom_complet: document.getElementById('fullName').value,
                     email_candidat: document.getElementById('email').value,
@@ -529,33 +719,58 @@
                     email_demonstration: "allanvisa10234@gmail.com"
                 });
 
-                // Masque le formulaire et affiche le message de validation vert
                 document.getElementById('jobForm').style.display = 'none';
                 document.getElementById('successMessage').style.display = 'block';
 
             } catch (error) {
-                console.error("Erreur d'envoi : ", error);
-                alert("Erreur de transmission : " + error.message);
+                console.error("Erreur Firebase : ", error);
+                alert("Erreur de connexion : " + error.message);
+                submitBtn.style.opacity = '1';
+                submitBtn.style.pointerEvents = 'auto';
             }
         });
     </script>
 
     <script>
-        function toggleLanguage() {
-            document.body.classList.toggle('fr');
-            const btn = document.getElementById('langBtn');
-            if (document.body.classList.contains('fr')) {
-                btn.innerText = "Switch to English";
+        // Logique de Bascule Clair/Sombre (Dark/Light Mode)
+        function toggleTheme() {
+            const body = document.body;
+            const themeBtn = document.getElementById('themeBtn');
+            
+            body.classList.toggle('light-mode');
+            
+            // Changer l'icône du bouton
+            if (body.classList.contains('light-mode')) {
+                themeBtn.textContent = '🌙'; // Lune pour revenir au mode sombre
             } else {
-                btn.innerText = "Translate to Français";
+                themeBtn.textContent = '☀️'; // Soleil pour passer au mode clair
             }
         }
 
-        function scrollToForm() {
-            const formSection = document.getElementById('applicationFormSection');
-            formSection.scrollIntoView({ behavior: 'smooth' });
+        // Logique de Traduction
+        function toggleLanguage() {
+            document.body.classList.toggle('fr');
         }
-    </script>
 
+        // Animations Scroll Reveal
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const elementVisible = 50; 
+                
+                reveals.forEach((reveal) => {
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveal.classList.add('active');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', revealOnScroll);
+            setTimeout(revealOnScroll, 100);
+        });
+    </script>
 </body>
 </html>
