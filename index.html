@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JB Madagascar - Official Corporate Website & Careers</title>
+    <style>
+        /* --- Palette de Couleurs Officielle et Intense JB Madagascar --- */
+        :root {
+            --jb-red: #e30613;        /* Rouge vif emblématique de JB */
+            --jb-dark-red: #b0040e;   /* Rouge foncé pour les contrastes */
+            --jb-yellow: #ffed00;     /* Jaune vif pour les accents de marque */
+            --white: #ffffff;
+            --light-bg: #fbeeed;     /* Fond très légèrement teinté de rouge pour adoucir */
+            --dark-text: #1a1a1a;
+            --grey-border: #dddddd;
+            --success-green: #27ae60;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Arial Black', 'Segoe UI', Impact, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            font-size: 11pt;
+        }
+
+        /* --- BANDEAU DE RECRUTEMENT DYNAMIQUE (ROUGE & JAUNE) --- */
+        .recruitment-banner {
+            background-color: var(--jb-yellow);
+            color: var(--jb-red);
+            text-align: center;
+            padding: 12px 20px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            border-bottom: 4px solid var(--jb-red);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-banner {
+            background-color: var(--jb-red);
+            color: var(--white);
+            border: 2px solid var(--white);
+            padding: 6px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .btn-banner:hover {
+            background-color: var(--dark-text);
+            color: var(--jb-yellow);
+            border-color: var(--jb-yellow);
+            transform: scale(1.05);
+        }
+
+        /* --- EN-TÊTE ULTRA ROUGE --- */
+        header {
+            background-color: var(--jb-red);
+            border-bottom: 8px solid var(--jb-yellow);
+            color: var(--white);
+            padding: 4rem 1rem;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 4.5rem;
+            font-family: Impact, 'Arial Black', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--white);
+            text-shadow: 3px 3px 0px var(--dark-text), -1px -1px 0px var(--dark-text), 1px -1px 0px var(--dark-text), -1px 1px 0px var(--dark-text);
+        }
+
+        .subtitle {
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background-color: var(--dark-text);
+            color: var(--jb-yellow);
+            display: inline-block;
+            padding: 6px 15px;
+            margin-top: 1rem;
+            border-radius: 4px;
+            font-size: 1.1rem;
+        }
+
+        /* --- BOUTON DE TRADUCTION --- */
+        .lang-switch {
+            margin-top: 2rem;
+        }
+
+        .btn-lang {
+            background-color: var(--white);
+            color: var(--jb-red);
+            border: 3px solid var(--dark-text);
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 900;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            text-transform: uppercase;
+        }
+
+        .btn-lang:hover {
+            background-color: var(--dark-text);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* --- CONTENEUR --- */
+        .container {
+            max-width: 950px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* --- CARTES DE SECTIONS STYLE MARQUE --- */
+        .section-card {
+            background: var(--white);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            border-radius: 0px; 
+            border: 4px solid var(--dark-text);
+            box-shadow: 8px 8px 0px var(--jb-red);
+        }
+
+        h2 {
+            color: var(--jb-red);
+            font-family: Impact, 'Arial Black', sans-serif;
+            text-transform: uppercase;
+            font-size: 2rem;
+            margin-top: 0;
+            border-bottom: 4px solid var(--jb-yellow);
+            padding-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        p, li {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.7;
+        }
+
+        .highlight {
+            font-weight: 900;
+            color: var(--jb-red);
+            background-color: rgba(227, 6, 19, 0.08);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        ul {
+            list-style-type: square;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+        }
+
+        /* --- FORMULAIRE DE RECRUTEMENT EMBLÉMATIQUE --- */
+        #applicationFormSection {
+            border: 4px solid var(--jb-red);
+            box-shadow: 8px 8px 0px var(--dark-text);
+            background-color: var(--white);
+        }
+
+        #applicationFormSection h2 {
+            color: var(--white);
+            background-color: var(--jb-red);
+            padding: 10px 15px;
+            border: 3px solid var(--dark-text);
+            border-bottom: 4px solid var(--dark-text);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            color: var(--dark-text);
+            text-transform: uppercase;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 3px solid var(--dark-text);
+            border-radius: 0px;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #fafafa;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="url"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--jb-red);
+            background-color: var(--white);
+        }
+
+        .btn-submit {
+            background-color: var(--jb-red);
+            color: var(--white);
+            border: 3px solid var(--dark-text);
+            padding: 15px 30px;
+            font-size: 1.3rem;
+            font-family: Impact, sans-serif;
+            letter-spacing: 1px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            box-shadow: 4px 4px 0px var(--dark-text);
+        }
+
+        .btn-submit:hover {
+            background-color: var(--jb-yellow);
+            color: var(--dark-text);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--dark-text);
+        }
+
+        .btn-submit:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px var(--dark-text);
+        }
+
+        #successMessage {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border: 3px solid var(--success-green);
+            text-align: center;
+            font-weight: bold;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 1.2rem;
+            margin-top: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            background-color: var(--dark-text);
+            color: var(--white);
+            border-top: 6px solid var(--jb-red);
+            margin-top: 5rem;
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: bold;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+        
+        footer .footer-accent {
+            color: var(--jb-yellow);
+        }
+
+        .lang-fr {
+            display: none;
+        }
+
+        body.fr .lang-en {
+            display: none;
+        }
+        body.fr .lang-fr {
+            display: block;
+        }
+    </style>
+    <!-- Chargement d'EmailJS pour l'envoi direct vers ta boîte mail -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          // Remplace par ton ID public EmailJS si tu as créé un compte
+          emailjs.init("TON_USER_ID_EMAILJS"); 
+       })();
+    </script>
+</head>
+<body class="fr">
+
+    <div class="recruitment-banner">
+        <span class="lang-en">⚠️ OFFICIAL WARNING: JB MADAGASCAR IS HIRING! JOIN OUR FACTORY TEAM</span>
+        <span class="lang-fr">⚠️ ALERTE OFFICIELLE : JB MADAGASCAR RECRUTE ! REJOIGNEZ NOTRE USINE</span>
+        <button class="btn-banner" onclick="scrollToForm()">
+            <span class="lang-en">Apply Online</span>
+            <span class="lang-fr">Postuler Ici</span>
+        </button>
+    </div>
+
+    <header>
+        <div class="lang-en">
+            <h1>JB MADAGASCAR</h1>
+            <p class="subtitle">Official Corporate Hub & Active Recruitment</p>
+        </div>
+        <div class="lang-fr">
+            <h1>JB MADAGASCAR</h1>
+            <p class="subtitle">Espace Institutionnel Officiel & Recrutement Actif</p>
+        </div>
+
+        <div class="lang-switch">
+            <button class="btn-lang" onclick="toggleLanguage()" id="langBtn">Switch to English</button>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="section-card">
+            <div class="lang-en">
+                <h2>🏢 COMPANY PROFILE</h2>
+                <p>We are <span class="highlight">JB Madagascar</span>, the most iconic and powerful subsidiary of the <span class="highlight">BASAN Group</span>. Since our historic foundation in 1963, we have ruled the agrifood market on the island. We manufacture and distribute high-volume, extremely popular consumer goods that are present in every single Malagasy home.</p>
+            </div>
+            <div class="lang-fr">
+                <h2>🏢 PROFIL DE L'ENTREPRISE</h2>
+                <p>Nous sommes la société <span class="highlight">JB Madagascar</span>, la filiale la plus emblématique et puissante du <span class="highlight">groupe BASAN</span>. Depuis notre fondation historique en 1963, nous dominons le marché de l'agroalimentaire sur l'île. Nous fabriquons et distribuons des produits de grande consommation à fort volume et extrêmement populaires, présents dans chaque foyer malgache.</p>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="lang-en">
+                <h2>🍪 OUR PRODUCTS & FAMOUS BRANDS</h2>
+                <p>Our global reputation is built on delicious, affordable, and legendary snacks:</p>
+                <ul>
+                    <li><span class="highlight">Biscuits & Cookies:</span> The legendary 4x4 biscuits, Gouty, and Pecto.</li>
+                    <li><span class="highlight">Confectionery:</span> Unbeatable candies, chewing gums, and premium chocolates (including the famous Mini Choco range and Tuti Sucette).</li>
+                    <li><span class="highlight">Strategic Diversification:</span> We have recently expanded our production lines to modern hygiene, cosmetic, and home maintenance products.</li>
+                </ul>
+            </div>
+            <div class="lang-fr">
+                <h2>🍪 NOS PRODUITS & MARQUES CÉLÈBRES</h2>
+                <p>Notre réputation mondiale repose sur des produits délicieux, accessibles et légendaires :</p>
+                <ul>
+                    <li><span class="highlight">Biscuits & Goûters :</span> Les légendaires biscuits 4x4, Gouty, et Pecto.</li>
+                    <li><span class="highlight">Confiseries :</span> Des bonbons imbattables, chewing-gums et chocolats de premier choix (notamment la célèbre gamme Mini Choco et Tuti Sucette).</li>
+                    <li><span class="highlight">Diversification Stratégique :</span> Nous avons récemment étendu nos lignes de production aux produits modernes d'hygiène, de cosmétique et d'entretien.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="lang-en">
+                <h2>📍 ECO-FACTORY & HEADQUARTERS</h2>
+                <p>We run a massive country-wide distribution network. As a forward-thinking industry leader, our main production complex located in <strong>Amboditsiry</strong> uses eco-friendly solar energy infrastructure to power its industrial machinery.</p>
+                <ul>
+                    <li><strong>Corporate HQ:</strong> 24 Radama I Street, Tsaralalàna, Antananarivo.</li>
+                    <li><strong>Direct Line:</strong> +261 32 32 031 03 | jb@basan.mg</li>
+                </ul>
+            </div>
+            <div class="lang-fr">
+                <h2>📍 USINE ÉCO-RESPONSABLE & SIÈGE SOCIAL</h2>
+                <p>Nous gérons un réseau de distribution massif à l'échelle nationale. En tant que leader industriel visionnaire, notre complexe de production principal situé à <strong>Amboditsiry</strong> utilise une infrastructure d'énergie solaire écologique pour alimenter ses machines industrielles.</p>
+                <ul>
+                    <li><strong>Siège Social :</strong> 24 rue Radama Ier, Tsaralalàna, Antananarivo.</li>
+                    <li><strong>Ligne Directe :</strong> +261 32 32 031 03 | jb@basan.mg</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-card" id="applicationFormSection">
+            <div class="lang-en">
+                <h2>💼 CAREER PORTAL: SUBMIT YOUR CV</h2>
+                <p>Do you want to work for the best agrifood brand? Fill out the official corporate application form below to submit your resume directly to our Human Resources department.</p>
+            </div>
+            <div class="lang-fr">
+                <h2>💼 PORTAIL CARRIÈRE : DÉPOSEZ VOTRE CV</h2>
+                <p>Vous souhaitez travailler pour la meilleure marque agroalimentaire ? Remplissez le formulaire de candidature officiel ci-dessous pour soumettre votre CV directement à notre département des Ressources Humaines.</p>
+            </div>
+
+            <form id="jobForm">
+                <div class="form-group">
+                    <label for="fullName">
+                        <span class="lang-en">Full Name :</span>
+                        <span class="lang-fr">Nom Complet :</span>
+                    </label>
+                    <input type="text" id="fullName" required placeholder="e.g. Allan Maurice">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">
+                        <span class="lang-en">Official Email Address :</span>
+                        <span class="lang-fr">Adresse Email Officielle :</span>
+                    </label>
+                    <input type="email" id="email" required placeholder="name@domain.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">
+                        <span class="lang-en">Active Phone Number :</span>
+                        <span class="lang-fr">Numéro de Téléphone Actif :</span>
+                    </label>
+                    <input type="tel" id="phone" required placeholder="+261 32 XX XXX XX">
+                </div>
+
+                <div class="form-group">
+                    <label for="jobTitle">
+                        <span class="lang-en">Target Department :</span>
+                        <span class="lang-fr">Département Visé :</span>
+                    </label>
+                    <select id="jobTitle" required>
+                        <option value="" disabled selected>-- Choose your department --</option>
+                        <option value="production">Amboditsiry Factory Production Operator</option>
+                        <option value="marketing">Brand Management & Sales Representative</option>
+                        <option value="logistics">National Fleet & Supply Chain Logistics</option>
+                        <option value="internship">Professional Student Internship (Stage)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="cvUrl">
+                        <span class="lang-en">Link to your Digital CV / Resume (Google Drive, Dropbox, PDF...) :</span>
+                        <span class="lang-fr">Lien vers votre CV Numérique (Google Drive, Dropbox, PDF...) :</span>
+                    </label>
+                    <input type="url" id="cvUrl" required placeholder="https://drive.google.com/.../mon-cv.pdf">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">
+                        <span class="lang-en">Corporate Motivation Statement :</span>
+                        <span class="lang-fr">Lettre de Motivation Express :</span>
+                    </label>
+                    <textarea id="message" rows="5" placeholder="..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    <span class="lang-en">Send Application Files</span>
+                    <span class="lang-fr">Transmettre le Dossier</span>
+                </button>
+            </form>
+
+            <div id="successMessage">
+                <span class="lang-en">✅ TRANSMISSION SUCCESSFUL! Your professional file and CV have been securely uploaded to the JB Madagascar recruitment database. Our HR team will review your data.</span>
+                <span class="lang-fr">✅ TRANSMISSION RÉUSSIE ! Votre dossier professionnel et votre CV ont été enregistrés avec succès dans la base de données de recrutement de JB Madagascar. Notre équipe RH va analyser vos données.</span>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <span class="footer-accent">JB MADAGASCAR</span> - Filiale du Groupe BASAN. All corporate rights reserved.</p>
+    </footer>
+
+    <!-- Script de Connexion Modulaire avec tes vraies clés Firebase -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+
+        // Tes informations réelles d'enregistrement
+        const firebaseConfig = {
+            apiKey: "AIzaSyDkwEvGmQtS4qZbwlRJZawmRKBoScQAaxc",
+            authDomain: "expoanglais-3bff4.firebaseapp.com",
+            projectId: "expoanglais-3bff4",
+            storageBucket: "expoanglais-3bff4.firebasestorage.app",
+            messagingSenderId: "409201167907",
+            appId: "1:409201167907:web:cab43d03b1c47435066b96"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        document.getElementById('jobForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const inputs = {
+                nom_complet: document.getElementById('fullName').value,
+                email_candidat: document.getElementById('email').value,
+                telephone: document.getElementById('phone').value,
+                departement: document.getElementById('jobTitle').value,
+                lien_cv: document.getElementById('cvUrl').value,
+                motivation: document.getElementById('message').value,
+                date_soumission: serverTimestamp(),
+                email_demonstration: "allanvisa10234@gmail.com"
+            };
+
+            try {
+                // 1. Enregistrement direct et instantané dans ton Cloud Firestore
+                await addDoc(collection(db, "cv_demonstrations"), inputs);
+
+                // 2. Déclenchement facultatif de l'email via EmailJS (si configuré)
+                if (typeof emailjs !== 'undefined') {
+                    await emailjs.send("TON_SERVICE_ID", "TON_TEMPLATE_ID", {
+                        to_email: "allanvisa10234@gmail.com",
+                        from_name: inputs.nom_complet,
+                        from_email: inputs.email_candidat,
+                        phone: inputs.telephone,
+                        department: inputs.departement,
+                        cv_link: inputs.lien_cv,
+                        message: inputs.motivation
+                    });
+                }
+
+                // Masquage et bascule vers ton écran de succès d'origine
+                document.getElementById('jobForm').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+
+            } catch (error) {
+                console.error("Erreur d'envoi : ", error);
+                alert("Erreur lors de la transmission du dossier.");
+            }
+        });
+    </script>
+
+    <script>
+        // Scripts d'interface utilisateur d'origine préservés
+        function toggleLanguage() {
+            document.body.classList.toggle('fr');
+            const btn = document.getElementById('langBtn');
+            if (document.body.classList.contains('fr')) {
+                btn.innerText = "Switch to English";
+            } else {
+                btn.innerText = "Translate to Français";
+            }
+        }
+
+        function scrollToForm() {
+            const formSection = document.getElementById('applicationFormSection');
+            formSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>
