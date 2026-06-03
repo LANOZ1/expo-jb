@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JB Madagascar - Official Corporate Website & Careers</title>
     <style>
-        /* --- Palette de Couleurs Officielle et Intense JB Madagascar --- */
+        /* --- Palette de Couleurs Officielle JB Madagascar --- */
         :root {
-            --jb-red: #e30613;        /* Rouge vif emblématique de JB */
-            --jb-dark-red: #b0040e;   /* Rouge foncé pour les contrastes */
-            --jb-yellow: #ffed00;     /* Jaune vif pour les accents de marque */
+            --jb-red: #e30613;        
+            --jb-dark-red: #b0040e;   
+            --jb-yellow: #ffed00;     
             --white: #ffffff;
-            --light-bg: #fbeeed;     /* Fond très légèrement teinté de rouge pour adoucir */
+            --light-bg: #fbeeed;     
             --dark-text: #1a1a1a;
             --grey-border: #dddddd;
             --success-green: #27ae60;
@@ -32,21 +32,24 @@
             background-color: var(--light-bg);
             color: var(--dark-text);
             font-size: 11pt;
+            overflow-x: hidden; /* Empêche le site de bouger de gauche à droite sur téléphone */
         }
 
-        /* --- BANDEAU DE RECRUTEMENT DYNAMIQUE (ROUGE & JAUNE) --- */
+        /* --- BANDEAU DE RECRUTEMENT RESPONSIVE --- */
         .recruitment-banner {
             background-color: var(--jb-yellow);
             color: var(--jb-red);
             text-align: center;
-            padding: 12px 20px;
+            padding: 12px 15px;
             font-weight: 900;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             border-bottom: 4px solid var(--jb-red);
             display: flex;
+            flex-direction: row;
             justify-content: center;
             align-items: center;
             gap: 15px;
+            flex-wrap: wrap; /* Aligne le bouton en dessous automatiquement si l'écran est trop petit */
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
@@ -61,7 +64,7 @@
             text-transform: uppercase;
             font-size: 0.9rem;
             transition: all 0.2s ease-in-out;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            white-space: nowrap;
         }
 
         .btn-banner:hover {
@@ -71,24 +74,24 @@
             transform: scale(1.05);
         }
 
-        /* --- EN-TÊTE ULTRA ROUGE --- */
+        /* --- EN-TÊTE ADAPTATIF --- */
         header {
             background-color: var(--jb-red);
             border-bottom: 8px solid var(--jb-yellow);
             color: var(--white);
-            padding: 4rem 1rem;
+            padding: 3rem 1rem;
             text-align: center;
             box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
 
         header h1 {
             margin: 0;
-            font-size: 4.5rem;
+            font-size: 3.5rem; /* Ajusté pour PC */
             font-family: Impact, 'Arial Black', sans-serif;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--white);
+            letter-spacing: 2px;
             text-shadow: 3px 3px 0px var(--dark-text), -1px -1px 0px var(--dark-text), 1px -1px 0px var(--dark-text), -1px 1px 0px var(--dark-text);
+            word-wrap: break-word;
         }
 
         .subtitle {
@@ -102,47 +105,39 @@
             padding: 6px 15px;
             margin-top: 1rem;
             border-radius: 4px;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            max-width: 90%;
         }
 
-        /* --- BOUTON DE TRADUCTION --- */
         .lang-switch {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
 
         .btn-lang {
             background-color: var(--white);
             color: var(--jb-red);
             border: 3px solid var(--dark-text);
-            padding: 0.8rem 2rem;
-            font-size: 1.1rem;
+            padding: 0.6rem 1.5rem;
+            font-size: 1rem;
             font-weight: 900;
             cursor: pointer;
             border-radius: 30px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
             text-transform: uppercase;
         }
 
-        .btn-lang:hover {
-            background-color: var(--dark-text);
-            color: var(--white);
-            transform: translateY(-3px);
-        }
-
-        /* --- CONTENEUR --- */
+        /* --- CONTENEUR ET CADRES PRINCIPAUX --- */
         .container {
-            max-width: 950px;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
+            width: 100%;
+            max-width: 900px; /* Largeur maximale parfaite sur PC */
+            margin: 2rem auto;
+            padding: 0 20px; /* Marges de sécurité sur les côtés */
         }
 
-        /* --- CARTES DE SECTIONS STYLE MARQUE --- */
         .section-card {
             background: var(--white);
-            padding: 2.5rem;
+            padding: 2rem;
             margin-bottom: 2.5rem;
-            border-radius: 0px; 
             border: 4px solid var(--dark-text);
             box-shadow: 8px 8px 0px var(--jb-red);
         }
@@ -151,18 +146,17 @@
             color: var(--jb-red);
             font-family: Impact, 'Arial Black', sans-serif;
             text-transform: uppercase;
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-top: 0;
             border-bottom: 4px solid var(--jb-yellow);
             padding-bottom: 0.5rem;
-            letter-spacing: 1px;
         }
 
         p, li {
             font-family: 'Segoe UI', Arial, sans-serif;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 500;
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
         .highlight {
@@ -174,15 +168,14 @@
         }
 
         ul {
-            list-style-type: square;
-            padding-left: 1.5rem;
+            padding-left: 1.2rem;
         }
 
         li {
             margin-bottom: 0.8rem;
         }
 
-        /* --- FORMULAIRE DE RECRUTEMENT EMBLÉMATIQUE --- */
+        /* --- FORMULAIRE DE RECRUTEMENT INTERACTIF --- */
         #applicationFormSection {
             border: 4px solid var(--jb-red);
             box-shadow: 8px 8px 0px var(--dark-text);
@@ -194,11 +187,11 @@
             background-color: var(--jb-red);
             padding: 10px 15px;
             border: 3px solid var(--dark-text);
-            border-bottom: 4px solid var(--dark-text);
+            margin: -2rem -2rem 2rem -2rem; /* Permet au titre de s'étendre sur tout le haut du cadre */
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.3rem;
         }
 
         label {
@@ -207,7 +200,7 @@
             font-weight: 800;
             color: var(--dark-text);
             text-transform: uppercase;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         input[type="text"],
@@ -219,8 +212,6 @@
             width: 100%;
             padding: 12px;
             border: 3px solid var(--dark-text);
-            border-radius: 0px;
-            box-sizing: border-box;
             font-family: 'Segoe UI', Arial, sans-serif;
             font-size: 1rem;
             font-weight: 600;
@@ -242,11 +233,10 @@
             background-color: var(--jb-red);
             color: var(--white);
             border: 3px solid var(--dark-text);
-            padding: 15px 30px;
-            font-size: 1.3rem;
+            padding: 15px 20px;
+            font-size: 1.25rem;
             font-family: Impact, sans-serif;
             letter-spacing: 1px;
-            font-weight: bold;
             cursor: pointer;
             width: 100%;
             transition: all 0.2s;
@@ -257,13 +247,6 @@
         .btn-submit:hover {
             background-color: var(--jb-yellow);
             color: var(--dark-text);
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px var(--dark-text);
-        }
-
-        .btn-submit:active {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px var(--dark-text);
         }
 
         #successMessage {
@@ -274,50 +257,82 @@
             border: 3px solid var(--success-green);
             text-align: center;
             font-weight: bold;
-            font-family: 'Segoe UI', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-top: 15px;
         }
 
         footer {
             text-align: center;
-            padding: 2.5rem;
+            padding: 2rem 1rem;
             background-color: var(--dark-text);
             color: var(--white);
             border-top: 6px solid var(--jb-red);
-            margin-top: 5rem;
+            margin-top: 4rem;
             font-family: 'Segoe UI', sans-serif;
-            font-weight: bold;
         }
 
-        footer p {
-            margin: 0;
-            font-size: 1rem;
-        }
+        .lang-fr { display: none; }
+        body.fr .lang-en { display: none; }
+        body.fr .lang-fr { display: block; }
+
+        /* ==========================================================================
+           📱 MEDIA QUERIES : AJUSTEMENTS POUR TABLETTES ET TÉLÉPHONES
+           ========================================================================== */
         
-        footer .footer-accent {
-            color: var(--jb-yellow);
+        /* 1. Écrans Moyens (Tablettes : moins de 768px) */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.8rem; /* Titre un peu plus petit */
+            }
+            .container {
+                margin: 1rem auto;
+                padding: 0 15px; /* On resserre légèrement les bords */
+            }
+            .section-card {
+                padding: 1.5rem; /* Moins de vide autour du texte interne */
+            }
+            #applicationFormSection h2 {
+                margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+            }
         }
 
-        .lang-fr {
-            display: none;
-        }
-
-        body.fr .lang-en {
-            display: none;
-        }
-        body.fr .lang-fr {
-            display: block;
+        /* 2. Petits Écrans (Smartphones : moins de 480px) */
+        @media (max-width: 480px) {
+            .recruitment-banner {
+                flex-direction: column; /* Le bouton passe en dessous pour ne pas écraser le texte */
+                gap: 8px;
+                font-size: 0.95rem;
+            }
+            header h1 {
+                font-size: 2.2rem; /* Titre parfaitement dimensionné pour mobile */
+            }
+            header {
+                padding: 2rem 1rem;
+            }
+            .section-card {
+                padding: 1.2rem;
+                border: 3px solid var(--dark-text); /* Bordures un poil plus fines */
+                box-shadow: 5px 5px 0px var(--jb-red); /* Ombre ajustée */
+            }
+            #applicationFormSection {
+                box-shadow: 5px 5px 0px var(--dark-text);
+            }
+            #applicationFormSection h2 {
+                margin: -1.2rem -1.2rem 1.2rem -1.2rem;
+                font-size: 1.4rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            p, li {
+                font-size: 1rem; /* Texte très lisible sur smartphone */
+            }
+            .btn-submit {
+                font-size: 1.1rem;
+                padding: 12px 15px;
+            }
         }
     </style>
-    <!-- Chargement d'EmailJS pour l'envoi direct vers ta boîte mail -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-       (function(){
-          // Remplace par ton ID public EmailJS si tu as créé un compte
-          emailjs.init("TON_USER_ID_EMAILJS"); 
-       })();
-    </script>
 </head>
 <body class="fr">
 
@@ -481,12 +496,11 @@
         <p>&copy; 2026 <span class="footer-accent">JB MADAGASCAR</span> - Filiale du Groupe BASAN. All corporate rights reserved.</p>
     </footer>
 
-    <!-- Script de Connexion Modulaire avec tes vraies clés Firebase -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
 
-        // Tes informations réelles d'enregistrement
+        // Configuration d'authentification à ta base Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyDkwEvGmQtS4qZbwlRJZawmRKBoScQAaxc",
             authDomain: "expoanglais-3bff4.firebaseapp.com",
@@ -502,47 +516,31 @@
         document.getElementById('jobForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const inputs = {
-                nom_complet: document.getElementById('fullName').value,
-                email_candidat: document.getElementById('email').value,
-                telephone: document.getElementById('phone').value,
-                departement: document.getElementById('jobTitle').value,
-                lien_cv: document.getElementById('cvUrl').value,
-                motivation: document.getElementById('message').value,
-                date_soumission: serverTimestamp(),
-                email_demonstration: "allanvisa10234@gmail.com"
-            };
-
             try {
-                // 1. Enregistrement direct et instantané dans ton Cloud Firestore
-                await addDoc(collection(db, "cv_demonstrations"), inputs);
+                // Envoi des données du formulaire directement à Firestore
+                await addDoc(collection(db, "cv_demonstrations"), {
+                    nom_complet: document.getElementById('fullName').value,
+                    email_candidat: document.getElementById('email').value,
+                    telephone: document.getElementById('phone').value,
+                    departement: document.getElementById('jobTitle').value,
+                    lien_cv: document.getElementById('cvUrl').value,
+                    motivation: document.getElementById('message').value,
+                    date_soumission: serverTimestamp(),
+                    email_demonstration: "allanvisa10234@gmail.com"
+                });
 
-                // 2. Déclenchement facultatif de l'email via EmailJS (si configuré)
-                if (typeof emailjs !== 'undefined') {
-                    await emailjs.send("TON_SERVICE_ID", "TON_TEMPLATE_ID", {
-                        to_email: "allanvisa10234@gmail.com",
-                        from_name: inputs.nom_complet,
-                        from_email: inputs.email_candidat,
-                        phone: inputs.telephone,
-                        department: inputs.departement,
-                        cv_link: inputs.lien_cv,
-                        message: inputs.motivation
-                    });
-                }
-
-                // Masquage et bascule vers ton écran de succès d'origine
+                // Masque le formulaire et affiche le message de validation vert
                 document.getElementById('jobForm').style.display = 'none';
                 document.getElementById('successMessage').style.display = 'block';
 
             } catch (error) {
                 console.error("Erreur d'envoi : ", error);
-                alert("Erreur lors de la transmission du dossier.");
+                alert("Erreur de transmission : " + error.message);
             }
         });
     </script>
 
     <script>
-        // Scripts d'interface utilisateur d'origine préservés
         function toggleLanguage() {
             document.body.classList.toggle('fr');
             const btn = document.getElementById('langBtn');
